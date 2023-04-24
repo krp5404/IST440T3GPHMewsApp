@@ -1,7 +1,12 @@
+using GPHMewsApp.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<DataDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnectionString")));
 
 var app = builder.Build();
 
