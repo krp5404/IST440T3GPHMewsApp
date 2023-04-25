@@ -1,0 +1,152 @@
+﻿@{
+    Layout = "_Layout";
+}
+<!-- LOGIN PAGE-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" type="text/css" href="MEWSalert.css" /> --> <!-- These css links seem to never work on visual studio??-->
+    <title>MEWS Alert System</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: #000033;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*.name {
+            color: whitesmoke;
+            font-family: Arial, Helvetica, sans-serif;
+
+        } */
+
+        .name:hover {
+            color: cornflowerblue;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-title {
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            font-size: 50px;
+            margin-bottom: 50px;
+        }
+
+
+        #login-button {
+            align-items: center;
+            background-color: #0A66C2;
+            border: 0;
+            border-radius: 100px;
+            box-sizing: border-box;
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+            line-height: 20px;
+            max-width: 480px;
+            min-height: 40px;
+            min-width: 0px;
+            overflow: hidden;
+            padding: 0px;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: center;
+            touch-action: manipulation;
+            transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: middle;
+            margin-top: 15px;
+        }
+
+            #login-button:hover,
+            #login-button:focus {
+                background-color: #16437E;
+                color: #ffffff;
+                border: none;
+            }
+
+            #login-button:active {
+                background: #09223b;
+                color: rgb(255, 255, 255, .7);
+                border: none;
+            }
+
+            #login-button:disabled {
+                cursor: not-allowed;
+                background: rgba(0, 0, 0, .08);
+                color: rgba(0, 0, 0, .3);
+                border: none;
+            }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -32px;
+        }
+
+        input[type="text"], input[type="password"] {
+            margin: 10px 0;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            border: none;
+            line-height: 25px;
+            text-align: center;
+        }
+
+            input[type="text"]:focus, input[type="password"]:focus {
+                background-color: #cce6ff;
+            }
+    </style>
+</head>
+<body>
+    <!--   <h2 class="name">GPH ⛨</h2>    -->
+    <div class="container">
+        <h1 class="login-title">MEWS Alert System</h1>
+        <form>
+            <input placeholder="User ID" autocomplete="off" name="user" type="text" />
+            <input placeholder="Password" autocomplete="off" name="pass" type="password" />
+            <input id='login-button' type='submit' value='Login'></input>
+        </form>
+        <!-- <button class="login-button" role="button">Submit</button> -->
+    </div>
+</body>
+<script>
+    function login(event) {
+        event.preventDefault();
+        var username = event.target['user'].value;
+        var password = event.target['pass'].value;
+        if (username == 'username' && password == 'password') {
+            alert('You are now logged in! redirecting... ')
+            window.location.reload()
+        }
+        else {
+            alert('invalid username/password. Please try again.')
+            window.location.reload()
+        }
+    }
+</script>
+</html>

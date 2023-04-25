@@ -18,6 +18,7 @@ namespace GPHMewsApp.Controllers
             return View();
         }
 
+
         public IActionResult Privacy()
         {
             return View();
