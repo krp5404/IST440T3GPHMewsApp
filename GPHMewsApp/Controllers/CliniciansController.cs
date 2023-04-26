@@ -22,8 +22,10 @@ namespace GPHMewsApp.Controllers
         public async Task<IActionResult> ClinicianIndex() {
             var clinicians = await gphDataDbContext.Clinicians.ToListAsync();
 
-            return View(); 
+            return View(clinicians); 
         }
+
+        
 
 
     }

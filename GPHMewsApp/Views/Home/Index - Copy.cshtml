@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Alerts Page</title>
+    <!-- <link rel="stylesheet" type="text/css" href="index.css" /> -->
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .square {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            background-color: #e9e9e9;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .label {
+            text-align: left;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .score {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Alerts Page</h1>
+        <p>GPH Alert System</p>
+    </div>
+    <div class="container">
+        @for (var i = 1; i <= 3; i++)
+        {
+            <div class="row">
+                @for (var j = 1; j <= 4; j++)
+                {
+                    @* Generate a random number between 0 and 10 *@
+                    var randomNumber = new Random().Next(0, 11);
+                    var numberColor = "";
+                    if (randomNumber >= 0 && randomNumber <= 2)
+                    {
+                        numberColor = "green";
+                    }
+                    else if (randomNumber >= 3 && randomNumber <= 5)
+                    {
+                        numberColor = "orange";
+                    }
+                    else
+                    {
+                        numberColor = "red";
+                    }
+                    <div class="square">
+                        <div class="label">Patient Name</div>
+                        <div class="label">Date of Birth</div>
+                        <div class="label">Room Number</div>
+                        <div class="score" style="color:@numberColor">@randomNumber</div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</body>
+
+</html>
