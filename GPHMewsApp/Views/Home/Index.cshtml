@@ -1,4 +1,5 @@
-﻿@model List<GPHMewsApp.Models.Domain.Clinician>
+﻿@using GPHMewsApp.Models
+@model GPHMewsApp.Models.Domain.Clinician
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -24,13 +25,10 @@
             justify-content: center;
             align-items: center;
         }
-
         /*.name {
-                    color: whitesmoke;
-                    font-family: Arial, Helvetica, sans-serif;
-
-                } */
-
+                                    color: whitesmoke;
+                                    font-family: Arial, Helvetica, sans-serif;
+                                } */
         .name:hover {
             color: cornflowerblue;
         }
@@ -49,7 +47,6 @@
             font-size: 50px;
             margin-bottom: 50px;
         }
-
 
         #login-button {
             align-items: center;
@@ -127,33 +124,17 @@
     <!--   <h2 class="name">GPH ⛨</h2>    -->
     <div class="container">
         <h1 class="login-title">MEWS Alert System</h1>
-        <form>
-            <input placeholder="User ID" autocomplete="off" name="user" type="text" />
-            <input placeholder="Password" autocomplete="off" name="pass" type="password" />
+
+        <form action="Home\Verify" method="post">
+            <input placeholder="User ID" autocomplete="off" name="Username" type="text" />
+            <input placeholder="Password" autocomplete="off" name="Password" type="password" />
             <input id='login-button' type='submit' value='Login'></input>
         </form>
         <!-- <button class="login-button" role="button">Submit</button> -->
     </div>
 </body>
-<script>
-    function login(event) {
-        event.preventDefault();
-        var username = event.target['user'].value;
-   
-        if (Username == username && Password == password)
-        {
-            alert('You are now logged in! redirecting... ');
-            window.location.reload();
-        }
-        else
-        {
-            alert('invalid username/password. Please try again.');
-            window.location.reload();
-        }
 
-    
-     
-        
-    }
-</script>
 </html>
+
+
+

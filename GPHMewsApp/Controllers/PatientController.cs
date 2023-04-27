@@ -1,6 +1,8 @@
 ﻿using GPHMewsApp.Data;
+using GPHMewsApp.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace GPHMewsApp.Controllers
 {
@@ -25,6 +27,7 @@ namespace GPHMewsApp.Controllers
             return View(patients);
         }
 
+        
 
     }
 }
