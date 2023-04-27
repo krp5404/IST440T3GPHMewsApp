@@ -1,0 +1,32 @@
+﻿@model List<GPHMewsApp.Models.Domain.Patient>
+@{
+}
+
+<h1>Patients</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>PatientId</th>
+            <th>LastName</th>
+            <th>FirstName</th>
+            <th>BirthDate</th>
+            <th>ClinicianId</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var patient in Model)
+        {
+            <tr>
+                <td>@patient.PatientId</td>
+                <td>@patient.LastName</td>
+                <td>@patient.FirstName</td>
+                <td>@patient.BirthDate</td>
+                <td>@patient.ClinicianId</td>
+                <td><a href="PatientViewModel/ViewPatient/@patient.PatientId">View</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>

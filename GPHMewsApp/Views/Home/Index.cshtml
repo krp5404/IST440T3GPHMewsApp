@@ -1,89 +1,140 @@
-﻿@{
+﻿@using GPHMewsApp.Models
+@model GPHMewsApp.Models.Domain.Clinician
+@{
     ViewData["Title"] = "Home Page";
 }
+<!-- LOGIN PAGE-->
 <!DOCTYPE html>
+
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Alerts Page</title>
-    <!-- <link rel="stylesheet" type="text/css" href="index.css" /> -->
+    <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" type="text/css" href="MEWSalert.css" /> --> <!-- These css links seem to never work on visual studio??-->
+    <title>MEWS Alert System</title>
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: #000033;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /*.name {
+                                    color: whitesmoke;
+                                    font-family: Arial, Helvetica, sans-serif;
+                                } */
+        .name:hover {
+            color: cornflowerblue;
+        }
+
         .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .square {
-            width: 200px;
-            height: 200px;
-            border-radius: 10px;
-            background-color: #e9e9e9;
-            margin: 10px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
-        .label {
-            text-align: left;
-            font-weight: bold;
-            margin: 5px 0;
+        .login-title {
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            font-size: 50px;
+            margin-bottom: 50px;
         }
 
-        .score {
-            font-size: 30px;
-            font-weight: bold;
-            margin-top: 10px;
+        #login-button {
+            align-items: center;
+            background-color: #0A66C2;
+            border: 0;
+            border-radius: 100px;
+            box-sizing: border-box;
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+            line-height: 20px;
+            max-width: 480px;
+            min-height: 40px;
+            min-width: 0px;
+            overflow: hidden;
+            padding: 0px;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: center;
+            touch-action: manipulation;
+            transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: middle;
+            margin-top: 15px;
         }
 
+            #login-button:hover,
+            #login-button:focus {
+                background-color: #16437E;
+                color: #ffffff;
+                border: none;
+            }
+
+            #login-button:active {
+                background: #09223b;
+                color: rgb(255, 255, 255, .7);
+                border: none;
+            }
+
+            #login-button:disabled {
+                cursor: not-allowed;
+                background: rgba(0, 0, 0, .08);
+                color: rgba(0, 0, 0, .3);
+                border: none;
+            }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -32px;
+        }
+
+        input[type="text"], input[type="password"] {
+            margin: 10px 0;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            border: none;
+            line-height: 25px;
+            text-align: center;
+        }
+
+            input[type="text"]:focus, input[type="password"]:focus {
+                background-color: #cce6ff;
+            }
     </style>
-
 </head>
 <body>
-    <div class="text-center">
-        <h1 class="display-4">Alerts Page</h1>
-        <p>GPH Alert System</p>
-    </div>
+    <!--   <h2 class="name">GPH ⛨</h2>    -->
     <div class="container">
-        @for (var i = 1; i <= 3; i++)
-        {
-            <div class="row">
-                @for (var j = 1; j <= 4; j++)
-                {
-                    @* Generate a random number between 0 and 10 *@
-                    var randomNumber = new Random().Next(0, 11);
-                    var numberColor = "";
-                    if (randomNumber >= 0 && randomNumber <= 2)
-                    {
-                        numberColor = "green";
-                    }
-                    else if (randomNumber >= 3 && randomNumber <= 5)
-                    {
-                        numberColor = "orange";
-                    }
-                    else
-                    {
-                        numberColor = "red";
-                    }
-                    <div class="square">
-                        <div class="label">Patient Name</div>
-                        <div class="label">Date of Birth</div>
-                        <div class="label">Room Number</div>
-                        <div class="score" style="color:@numberColor">@randomNumber</div>
-                    </div>
-                }
-            </div>
-        }
+        <h1 class="login-title">MEWS Alert System</h1>
+
+        <form action="Home\Verify" method="post">
+            <input placeholder="User ID" autocomplete="off" name="Username" type="text" />
+            <input placeholder="Password" autocomplete="off" name="Password" type="password" />
+            <input id='login-button' type='submit' value='Login'></input>
+        </form>
+        <!-- <button class="login-button" role="button">Submit</button> -->
     </div>
 </body>
 
 </html>
+
+
+
