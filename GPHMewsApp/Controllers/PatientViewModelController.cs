@@ -23,6 +23,11 @@ namespace GPHMewsApp.Controllers
             return View();
         }
 
+        public IActionResult AlertSettings()
+        {
+            return View();
+        }
+
         [HttpGet]
         public async Task<IActionResult> PatientViewModelIndex()
         {
@@ -40,6 +45,13 @@ namespace GPHMewsApp.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> PatientIndex()
+        {
+            var patients = await gphDataDbContext.Patients.ToListAsync();
+            return View(patients);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> ViewOnePatient(int id) {
             var patient = await gphDataDbContext.PatientViewModels.FirstOrDefaultAsync(x => x.PatientId == id);
             if (patient != null)
@@ -51,6 +63,21 @@ namespace GPHMewsApp.Controllers
             }
             
         }
+
+        
+        
+        /*[HttpGet]
+        public async Task<IActionResult> ViewClinicianAlerts(int id)
+        {
+            var alerts = await gphDataDbContext.PatientViewModels.Where(x => x.ClinicianId == id).ToListAsync();
+            if (alerts != null)
+            {
+                return View(alerts);
+            }
+            
+            
+
+        }*/
 
     }
 }

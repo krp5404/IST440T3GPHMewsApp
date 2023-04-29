@@ -41,28 +41,13 @@
 
                             <li class="nav-item">
                           
-                                <a class="nav-link" asp-area="" asp-controller="Patient" asp-action="PatientIndex">Patients Page</a>
+                                <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="PatientIndex">Patients Page</a>
                                 <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AllAlerts">Alerts Page</a>
-                                <a class="nav-link" href="#">Alert Settings</a>
+                                    <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AlertSettings">Alert Settings</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
+                            
                         </ul>
-                        <form class="d-flex mt-3" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-success" type="submit">Search</button>
-                        </form>
+                       
                     </div>
                 </div>
             </div>
@@ -137,16 +122,19 @@
 <body>
     
         
-        <h2 name="Username" style="text-align: right">Welcome, @TempData["Patient"]</h2>
- 
-   
-     <img src="\images\SuccessImg.png" alt="OktaVerify" width="600" height="250">
+     <h2 name="Username" style="text-align: right">Welcome, @TempData["Patient"]</h2>
+
+      <br />  
+
+
+    <img src="\images\SuccessImg.png" alt="OktaVerify" width="600" height="250">
      <h3 style="color: forestgreen; text-align:center">Okta Verified - Login Successful </h3>
      <br />
     <div class="text-center">
 
         <h1><a asp-area="" asp-controller="PatientViewModel" asp-action="PatientViewModelIndex"> Go to Alerts </a> </h1>
-    
+        <!--<h1><a href="PatientViewModel/ViewClinicianAlerts/@TempData["Patient"]"> Alerts </a> </h1>-->
+
     </div>
 </body>
 

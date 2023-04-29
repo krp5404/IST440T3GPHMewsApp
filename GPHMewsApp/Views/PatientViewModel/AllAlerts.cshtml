@@ -110,28 +110,13 @@
 
                             <li class="nav-item">
                                 
-                                <a class="nav-link" asp-area="" asp-controller="Patient" asp-action="PatientIndex">Patients Page</a>
+                                <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="PatientIndex">Patients Page</a>
                                 <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AllAlerts">Alerts Page</a>
-                                <a class="nav-link" href="#">Alert Settings</a>
+                                <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AlertSettings">Alert Settings</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
+                            
                         </ul>
-                        <form class="d-flex mt-3" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-success" type="submit">Search</button>
-                        </form>
+                        
                     </div>
                 </div>
             </div>
@@ -174,7 +159,7 @@
             else if (@patient.HeartRate >= 130) { Score = Score + 3; }
 
             //Respiratory Rate
-            if (@patient.RespRate <= 8) { Score = +2; }
+            if (@patient.RespRate <= 8) { Score = Score+2; }
             else if (@patient.RespRate >= 9 && @patient.RespRate <= 14) { Score = Score + 0; }
             else if (@patient.RespRate >= 15 && @patient.RespRate <= 20) { Score = Score + 1; }
             else if (@patient.RespRate >= 21 && @patient.RespRate <= 29) { Score = Score + 2; }

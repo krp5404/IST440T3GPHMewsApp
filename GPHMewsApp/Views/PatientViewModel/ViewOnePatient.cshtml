@@ -1,6 +1,7 @@
 ﻿@model GPHMewsApp.Models.Domain.PatientViewModel
 @{
 }
+
 <html>
 <head>
 <meta charset="utf-8" />
@@ -28,28 +29,13 @@
 
                         <li class="nav-item">
                             
-                            <a class="nav-link" asp-area="" asp-controller="Patient" asp-action="PatientIndex">Patients Page</a>
+                            <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="PatientIndex">Patients Page</a>
                             <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AllAlerts">Alerts Page</a>
-                            <a class="nav-link" href="#">Alert Settings</a>
+                                <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AlertSettings">Alert Settings</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
+                        
                     </ul>
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </form>
+                   
                 </div>
             </div>
         </div>
@@ -174,6 +160,10 @@
     <div class="column">
         <table class="table">
             <tr>
+                <th>PatientID:</th>
+                <td>@Model.PatientId</td>
+            </tr>
+            <tr>
                 <th>Name:</th>
                 <td>@Model.FirstName @Model.LastName</td>
             </tr>
@@ -204,33 +194,182 @@
         </table>
     </div>
     <div class="column">
-        <table class="table">
-            <tr>
-                <th>Vitals</th>
-                <td>            </td>
-            </tr>
-            <tr>
-                <th>Systolic BP:</th>
-                <td>@Model.SystolicBP</td>
-            </tr>
-            <tr>
-                <th>Heart Rate: </th>
-                <td>@Model.HeartRate</td>
-            </tr>
-            <tr>
-                <th>Respiratory Rate: </th>
-                <td>@Model.RespRate</td>
-            </tr>
-            <tr>
-                <th>Temperature: </th>
-                <td>@Model.Temperature</td>
-            </tr>
-            <tr>
-                <th>AVPU status: </th>
-                <td>@Model.AVPU</td>
-            </tr>
-            
-        </table>
+        @for(int i = 0; i<=0; i++)
+        {
+            int Score = 0;
+            <table class="table">
+                <tr>
+                    <th>Vitals</th>
+                    <td>            </td>
+                </tr>
+                <tr>
+                    <th>Systolic BP:</th>
+
+                    @if (Model.SystolicBP <= 70)
+                    {
+                        Score = Score + 3;
+                        <td class="danger">@Model.SystolicBP</td>
+                    }
+                    else if (Model.SystolicBP >= 71 && Model.SystolicBP <= 80)
+                    {
+                        Score = Score + 2;
+                        <td class="danger">@Model.SystolicBP</td>
+                    }
+                    else if (Model.SystolicBP >= 81 && Model.SystolicBP <= 100)
+                    {
+                        Score = Score + 1;
+                        <td class="warning">@Model.SystolicBP</td>
+                    }
+                    else if (Model.SystolicBP >= 101 && Model.SystolicBP <= 199)
+                    {
+                        Score = Score + 0;
+                        <td class="success">@Model.SystolicBP</td>
+                    }
+                    else if (Model.SystolicBP >= 200)
+                    {
+                        Score = Score + 2;
+                        <td class="danger">@Model.SystolicBP</td>
+                    }
+
+
+                </tr>
+                <tr>
+                    <th>Heart Rate: </th>
+                    @if (Model.HeartRate <= 40)
+                    {
+                        Score = Score + 2;
+                        <td class="danger">@Model.HeartRate</td>
+                    }
+                    else if (Model.HeartRate >= 41 && Model.HeartRate <= 50)
+                    {
+                        Score = Score + 1;
+                        <td class="warning">@Model.HeartRate</td>
+                    }
+                    else if (Model.HeartRate >= 51 && Model.HeartRate <= 100)
+                    {
+                        Score = Score + 0;
+                        <td class="success">@Model.HeartRate</td>
+                    }
+                    else if (Model.HeartRate >= 101 && Model.HeartRate <= 110)
+                    {
+                        Score = Score + 1;
+                        <td class="warning">@Model.HeartRate</td>
+                    }
+                    else if (Model.HeartRate >= 111 && Model.HeartRate <= 129)
+                    {
+                        Score = Score + 2;
+                        <td class="warning">@Model.HeartRate</td>
+                    }
+                    else if (Model.HeartRate >= 130)
+                    {
+                        Score = Score + 3;
+                        <td class="danger">@Model.HeartRate</td>
+                    }
+                    
+                </tr>
+                <tr>
+                    <th>Respiratory Rate: </th>
+                    
+                    @if (Model.RespRate <= 8) 
+                    { 
+                        Score = Score+2;
+                        <td class="danger">@Model.RespRate</td>
+                    }
+                    else if (Model.RespRate >= 9 && Model.RespRate <= 14)
+                    {
+                        Score = Score + 0;
+                        <td class="success">@Model.RespRate</td>
+                    }
+                    else if (Model.RespRate >= 15 && Model.RespRate <= 20)
+                    {
+                        Score = Score + 1;
+                        <td class="warning">@Model.RespRate</td>
+                    }
+                    else if (Model.RespRate >= 21 && Model.RespRate <= 29)
+                    {
+                        Score = Score + 2;
+                        <td class="warning">@Model.RespRate</td>
+                    }
+                    else if (Model.RespRate >= 30)
+                    {
+                        Score = Score + 3;
+                        <td class="danger">@Model.RespRate</td>
+                    }
+                    
+                </tr>
+                <tr>
+                    <th>Temperature: </th>
+                    @if (Decimal.Compare(Model.Temperature, 94) < 0)
+                    {
+                        Score = Score + 2;
+                        <td class="danger">@Model.Temperature</td>
+                    }
+                    else if (Decimal.Compare(Model.Temperature, 95) > 0 && Decimal.Compare(Model.Temperature, (decimal)(101.1)) < 0)
+                    {
+                        Score = Score + 0;
+                        <td class="success">@Model.Temperature</td>
+                    }
+                    else if (Decimal.Compare(Model.Temperature, (decimal)(101.3)) > 0)
+                    {
+                        Score = Score + 2;
+                        <td class="danger">@Model.Temperature</td>
+                    }
+                    
+                </tr>
+                <tr>
+                    <th>AVPU status: </th>
+                    @if ((Model.AVPU).Equals("Alert"))
+                    {
+                        Score = Score + 0;
+                        <td class="success">@Model.AVPU</td>
+                    }
+                    else if ((Model.AVPU).Equals("Verbal"))
+                    {
+                        Score = Score + 1;
+                        <td class="warning">@Model.AVPU</td>
+                    }
+                    else if ((Model.AVPU).Equals("Pain"))
+                    {
+                        Score = Score + 2;
+                        <td class="danger">@Model.AVPU</td>
+                    }
+                    else if ((Model.AVPU).Equals("Unresponsive"))
+                    {
+                        Score = Score + 3;
+                        <td class="danger">@Model.AVPU</td>
+                    }
+                   
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                
+                    
+                    @if (Score <= 2)
+                    {
+                    <tr class="success">
+                        <th>SCORE: </th>
+                        <td class="success"><b>@Score</b></td>
+                    </tr>
+                    } else if (Score >= 3 && Score <= 6)
+                    {
+                        <tr class="warning">
+                        <th>SCORE: </th>
+                        <td class="warning"><b>@Score</b></td>
+                        </tr>
+                    } else if (Score >= 7)
+                    {
+                        <tr class ="danger">
+                        <th>SCORE: </th>
+                        <td class="danger"><b>@Score</b></td>
+                        </tr>
+                        
+                    }
+                   
+
+            </table>
+        }
+        
     </div>
 
 
