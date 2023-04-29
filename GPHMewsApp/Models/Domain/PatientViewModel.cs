@@ -2,6 +2,7 @@
 {
     public class PatientViewModel
     {
+        public int PatientViewModelId { get; set; }
         public int PatientId { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -17,6 +18,7 @@
         public int HeartRate { get; set;}
         public int RespRate { get; set;}
         public decimal Temperature { get; set;}
+
 
 
     }

@@ -7,7 +7,7 @@ namespace GPHMewsApp.Data
 {
     public class DataDbContext : DbContext
     {
-        //private string connectionString = "server=DESKTOP-2IG6JHT; database=gphmewsDB;Trusted_connection=true;TrustServerCertificate=true  ";
+        private string connectionString = "server=DESKTOP-2IG6JHT; database=gphmewsDB;Trusted_connection=true;TrustServerCertificate=true  ";
         public DataDbContext()
         {
         }
@@ -19,12 +19,20 @@ namespace GPHMewsApp.Data
 
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Clinician> Clinicians { get; set; }
-        
-       
+
+        public DbSet<Admission> Admissions { get; set; }
+
+        public DbSet<PatientViewModel> PatientViewModels { get; set; }
 
 
-       /* public PatientViewModel FetchOne(int Id) {
-            
+
+
+
+
+
+        public PatientViewModel FetchOne(int Id)
+        {
+
             //access the database
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -61,12 +69,9 @@ namespace GPHMewsApp.Data
                     }
                 }
                 return pvmodel;
-            }*/
-            
-            
-
-          
-        
+            }
+        }
+    
         
     }
 }

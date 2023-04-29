@@ -1,4 +1,6 @@
-﻿@*
+﻿@model List<GPHMewsApp.Models.Domain.PatientViewModel>
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -12,18 +14,20 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Alerts Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 "  />
+    <title>Success Page</title>
     <!-- <link rel="stylesheet" type="text/css" href="index.css" /> -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GPHMewsApp.styles.css" asp-append-version="true" />
     <header>
+        <div class="topnav" >
         <nav class="navbar navbar-dark bg-dark sticky-top">
 
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area-"" asp-controller="Home" asp-action="Index">GPH Mews App</a>
-
+                <a class="navbar-brand" href="#SuccessPage">GPHMewsApp</a>
+                <a asp-area-"" asp-controller="Home" asp-action="Index">Logout</a>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,8 +40,9 @@
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Alerts Page</a>
+                          
                                 <a class="nav-link" asp-area="" asp-controller="Patient" asp-action="PatientIndex">Patients Page</a>
+                                <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AllAlerts">Alerts Page</a>
                                 <a class="nav-link" href="#">Alert Settings</a>
                             </li>
                             <li class="nav-item dropdown">
@@ -62,9 +67,18 @@
                 </div>
             </div>
         </nav>
+        </div>
     </header>
 
     <style>
+
+        .topnav {
+            overflow: hidden;
+            width: 100%;
+            max-height: 100px;
+        }
+         
+
         .navbar-custom {
             background-color: #0d0c4e;
         }
@@ -118,43 +132,20 @@
 
     </style>
 
+  
 </head>
 <body>
-    <div class="text-center">
-        <h1 class="display-4">Alerts</h1>
-    </div>
+    <h2 style="text-align: right" >Welcome, @TempData["Patient"]</h2>
     
-    <div class="container">
-        @for (var i = 1; i <= 3; i++)
-        {
-            <div class="row">
-                @for (var j = 1; j <= 4; j++)
-                {
-                    @* Generate a random number between 0 and 10 *@
-                    var randomNumber = new Random().Next(0, 11);
-                    var numberColor = "";
-                    if (randomNumber >= 0 && randomNumber <= 2)
-                    {
-                        numberColor = "green";
-                    }
-                    else if (randomNumber >= 3 && randomNumber <= 5)
-                    {
-                        numberColor = "orange";
-                    }
-                    else
-                    {
-                        numberColor = "red";
-                    }
-                    <div class="square">
-                        <div class="label">Patient Name</div>
-                        <div class="label">Date of Birth</div>
-                        <div class="label">Room Number</div>
-                        <div class="score" style="color:@numberColor">@randomNumber</div>
-                    </div>
-                }
-            </div>
-        }
-    </div>
+   
+     <img src="\images\SuccessImg.png" alt="OktaVerify" width="600" height="250">
+     <h3 style="color: forestgreen; text-align:center">Okta Verified - Login Successfull </h3>
+     <br />
+    <div class="text-center">
+
+        <h1><a asp-area="" asp-controller="PatientViewModel" asp-action="PatientViewModelIndex"> Go to Alerts </a> </h1>
+    
+    
 </body>
 
 </html>

@@ -1,23 +1,42 @@
 ﻿using GPHMewsApp.Data;
 using GPHMewsApp.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
+using System.Collections.Generic;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace GPHMewsApp.Controllers
 {
+    
     public class PatientViewModelController : Controller
     {
+        private readonly DataDbContext gphDataDbContext;
+
+        public PatientViewModelController(DataDbContext gphDataDbContext)
+        {
+            this.gphDataDbContext = gphDataDbContext;
+        }
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult ViewPatient(int patientId)
+        public async Task<IActionResult> PatientViewModelIndex()
         {
-            /* DataDbContext gphDataDbContext = new DataDbContext();
-             PatientViewModel modelResult = gphDataDbContext.FetchOne(patientId);
-             return View("PatientDetails", modelResult);*/
-            return View();
+            var patients = await gphDataDbContext.PatientViewModels.ToListAsync();
+     
+            return View(patients);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AllAlerts()
+        {
+            var patients = await gphDataDbContext.PatientViewModels.ToListAsync();
+
+            return View(patients);
         }
 
     }

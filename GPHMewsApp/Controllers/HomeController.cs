@@ -1,23 +1,29 @@
-﻿using GPHMewsApp.Models;
+﻿using GPHMewsApp.Data;
+using GPHMewsApp.Models;
 using GPHMewsApp.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace GPHMewsApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly DataDbContext gphDataDbContext;
+
+        public HomeController(DataDbContext gphDataDbContext)
+        {
+            this.gphDataDbContext = gphDataDbContext;
+        }
+
         SqlConnection connection = new SqlConnection();
         SqlCommand command = new SqlCommand();
         SqlDataReader dr;
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
 
         public IActionResult Index()
         {
@@ -28,9 +34,17 @@ namespace GPHMewsApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> PatientViewModelIndex()
+        {
+            var patients = await gphDataDbContext.PatientViewModels.ToListAsync();
+            return View(patients);
+        }
+
         [HttpPost]
         public ActionResult Verify(Clinician oClinician)
         {
+
             connectionString();
             connection.Open();
             command.Connection = connection;
@@ -39,7 +53,13 @@ namespace GPHMewsApp.Controllers
             if (dr.Read())
             {
                 connection.Close();
-                return View("SuccessPage");
+                ViewBag.Patient = oClinician.Username;
+                ViewData["Patient"] = oClinician.Username;
+                TempData["Patient"] = oClinician.Username;
+                TempData.Keep();
+
+                HttpContext.Session.SetString("Username", oClinician.Username.ToString());
+                return RedirectToAction("SuccessPage", "Home");
             }
             else
             {
@@ -47,13 +67,18 @@ namespace GPHMewsApp.Controllers
                 return View("ErrorLoginPage");
             }
 
-
-
         }
 
         void connectionString()
         {
             connection.ConnectionString = "server=DESKTOP-2IG6JHT; database=gphmewsDB;Trusted_connection=true;TrustServerCertificate=True ";
+        }
+
+
+        public IActionResult SuccessPage()
+        {
+            ViewBag.username = HttpContext.Session.GetString("username");
+            return View();
         }
 
 
