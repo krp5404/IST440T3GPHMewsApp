@@ -39,5 +39,18 @@ namespace GPHMewsApp.Controllers
             return View(patients);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ViewOnePatient(int id) {
+            var patient = await gphDataDbContext.PatientViewModels.FirstOrDefaultAsync(x => x.PatientId == id);
+            if (patient != null)
+            {
+                return View(patient);
+            }
+            else {
+                return View("PatientViewModelIndex");
+            }
+            
+        }
+
     }
 }
