@@ -1,6 +1,9 @@
 ﻿using GPHMewsApp.Data;
+using GPHMewsApp.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace GPHMewsApp.Controllers
 {
@@ -12,6 +15,7 @@ namespace GPHMewsApp.Controllers
         {
             this.gphDataDbContext = gphDataDbContext;
         }
+       
 
         public IActionResult Index()
         {
@@ -25,7 +29,7 @@ namespace GPHMewsApp.Controllers
             return View(clinicians); 
         }
 
-        
+      
 
 
     }

@@ -6,6 +6,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using System.Diagnostics.Metrics;
 
 namespace GPHMewsApp.Controllers
 {
@@ -57,9 +58,7 @@ namespace GPHMewsApp.Controllers
                 ViewData["Patient"] = oClinician.Username;
                 TempData["Patient"] = oClinician.Username;
                 TempData.Keep();
-
-                HttpContext.Session.SetString("Username", oClinician.Username.ToString());
-                return RedirectToAction("SuccessPage", "Home");
+                return View("SuccessPage");
             }
             else
             {
@@ -75,14 +74,12 @@ namespace GPHMewsApp.Controllers
         }
 
 
-        public IActionResult SuccessPage()
-        {
-            ViewBag.username = HttpContext.Session.GetString("username");
-            return View();
-        }
+ 
 
 
-        public IActionResult Privacy()
+
+
+public IActionResult Privacy()
         {
             return View();
         }
