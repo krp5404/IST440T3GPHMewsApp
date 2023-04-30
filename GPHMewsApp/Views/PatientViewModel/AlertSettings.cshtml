@@ -38,6 +38,7 @@
                                     <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="PatientIndex">Patients Page</a>
                                     <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AllAlerts">Alerts Page</a>
                                     <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AlertSettings">Alert Settings</a>
+                                    <b><a class="nav-link" asp-controller="Home" asp-action="Index">Logout</a></b>
                                 </li>
 
                             </ul>
@@ -199,14 +200,14 @@
 <body>
 	<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alert Settings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h1>
 	<h2>Adjust Cutoff Values</h2>
-	<div class="rectangle green">
-		0-2 <input type="color" class="color">
+	<div class="rectangle green"  >
+		0-2 stable
 	</div>
 	<div class="rectangle orange">
-		3-5 <input type="color" class="color">
+		3-5 warning 
 	</div>
 	<div class="rectangle red">
-		6+ <input type="color" class="color">
+		6+ danger
 	</div>
 	<div class="notification-label">Push Notification Criteria</div>
 	<select class="notification-chooser">

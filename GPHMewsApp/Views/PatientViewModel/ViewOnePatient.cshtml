@@ -14,7 +14,7 @@
 
         <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="PatientViewModel" asp-action="PatientViewModelIndex">GPHMewsApp</a>
-            <a asp-area-"" asp-controller="Home" asp-action="Index">Logout</a>
+            
 
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,10 +28,11 @@
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
                         <li class="nav-item">
-                            
+
                             <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="PatientIndex">Patients Page</a>
                             <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AllAlerts">Alerts Page</a>
-                                <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AlertSettings">Alert Settings</a>
+                            <a class="nav-link" asp-area="" asp-controller="PatientViewModel" asp-action="AlertSettings">Alert Settings</a>
+                            <b><a class="nav-link" asp-controller="Home" asp-action="Index">Logout</a></b>
                         </li>
                         
                     </ul>
@@ -176,7 +177,7 @@
                 <td>@Model.ClinicianId</td>
             </tr>
             <tr>
-                <th>Room&Bed Number: </th>
+                <th>Room&Bed: </th>
                 <td>@Model.RoomNumber, @Model.BedNumber</td>
             </tr>
             <tr>
